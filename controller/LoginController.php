@@ -1,0 +1,72 @@
+<?php
+session_start();
+require_once '../model/Usuarios.php';
+require_once '../model/pessoa.php';
+require_once '../service/conexao.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['username'] ?? '';
+    $senha = $_POST['password'] ?? '';
+
+    $usuario = usuario::buscarPorEmail($pdo, $email);
+
+    if ($usuario && password_verify($senha, $usuario['senha'])) {
+        
+        if ($usuario['is_adm']== 1) {
+            $_SESSION['admin_nome'] = $usuario['nome'];
+            $_SESSION['tipo'] = 'admin';
+            $_SESSION['msg'] = "Login realizado com sucesso!";
+            $_SESSION['msg_tipo'] = "sucesso";
+
+            exibirMensagemRedirect(
+                'Admin',
+                'Bem-vindo(a), ' . htmlspecialchars($usuario['nome']) . '!',
+                'Logando na página de admin...',
+                '../view/admin.php'
+            );
+        } else  {
+            $_SESSION['pessoa_nome'] = $usuario['nome'];
+            $_SESSION['tipo'] = 'pessoa';
+            $_SESSION['msg'] = "Login realizado com sucesso!";
+            $_SESSION['msg_tipo'] = "sucesso";
+
+            exibirMensagemRedirect(
+                'Login realizado',
+                'Login realizado com sucesso!,' . 
+                "seja bem vindo " . $usuario['nome'],
+                'Você será redirecionado em instantes...',
+                '../view/Pagina inicial/index.php'
+            );
+        }
+    } else {
+        $_SESSION['erro'] = "E-mail ou senha incorretos.";
+        $_SESSION['msg_tipo'] = "erro";
+        header('Location: ../view/login.php');
+        exit();
+    }
+}
+
+function exibirMensagemRedirect($titulo, $cabecalho, $mensagem, $url)
+{
+    echo '<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>' . htmlspecialchars($titulo) . '</title>
+        <link rel="stylesheet" href="../view/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>' . htmlspecialchars($cabecalho) . '</h2>
+            <p class="acertomsg">' . htmlspecialchars($mensagem) . '</p>
+        </div>
+        <script>
+            setTimeout(function() {
+                window.location.href = "' . htmlspecialchars($url) . '";
+            }, 3000);
+        </script>
+    </body>
+    </html>';
+    exit();
+}
+?>
