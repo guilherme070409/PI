@@ -46,7 +46,7 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'pessoa') {
                </div>
    
                <div class="sidebar__info" an class="user-name"><?php echo isset($_SESSION['pessoa_nome']) ? htmlspecialchars($_SESSION['pessoa_nome']) : 'pessoa'; ?></span>
-                  <span>kayohipolito2018@hotmail.com</span>
+                  <span><br><?php echo isset($_SESSION['pessoa_email']) ? htmlspecialchars($_SESSION['pessoa_email']) : 'pessoa'; ?></span>
                </div>
             </div>
 

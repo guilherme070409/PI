@@ -26,6 +26,13 @@ class usuario
             password_hash($novaSenha, PASSWORD_DEFAULT),
             $email
         ]);
-    }
+   }
+   public static function buscarPorId($pdo, $id)
+{
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 }
 ?>

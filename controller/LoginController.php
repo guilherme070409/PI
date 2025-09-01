@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             );
         } else  {
             $_SESSION['pessoa_nome'] = $usuario['nome'];
+            $_SESSION['pessoa_email'] = $usuario['email'];
             $_SESSION['tipo'] = 'pessoa';
             $_SESSION['msg'] = "Login realizado com sucesso!";
             $_SESSION['msg_tipo'] = "sucesso";
