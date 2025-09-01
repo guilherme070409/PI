@@ -18,7 +18,10 @@
 <?php
 session_start();
 
- $_SESSION['pessoa_nome'] = $usuario['nome'];
+if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'pessoa') {
+    header('Location: login.php');
+    exit();
+}
 
 ?>
       <!--=============== HEADER ===============-->
@@ -42,8 +45,7 @@ session_start();
                <div class="sidebar__img">
                </div>
    
-               <div class="sidebar__info">
-                  <h3><?php echo$usuario['nome']; ?></h3>
+               <div class="sidebar__info" an class="user-name"><?php echo isset($_SESSION['pessoa_nome']) ? htmlspecialchars($_SESSION['pessoa_nome']) : 'pessoa'; ?></span>
                   <span>kayohipolito2018@hotmail.com</span>
                </div>
             </div>

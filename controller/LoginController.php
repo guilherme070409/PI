@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $_SESSION['erro'] = "E-mail ou senha incorretos.";
         $_SESSION['msg_tipo'] = "erro";
-        header('Location: ../view/login.php');
+        header('Location: ../view/Pagina inicial/index.php');
         exit();
     }
 }
