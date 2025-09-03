@@ -8,14 +8,14 @@ class usuario
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function cadastrar($pdo, $email, $senha, $is_adm, $nome)
+    public static function cadastrar($pdo, $email, $senha, $is_adm, $nome_de_usuario)
     {
-        $stmt = $pdo->prepare("INSERT INTO usuarios (email, senha, is_adm, nome) VALUES (?, ?, ?,?)");
+        $stmt = $pdo->prepare("INSERT INTO usuarios (email, senha, is_adm, nome_de_usuario) VALUES (?, ?, ?,?)");
         return $stmt->execute([
             $email,
             password_hash($senha, PASSWORD_DEFAULT),
             $is_adm,  
-            $nome 
+            $nome_de_usuario
         ]);
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/08/2025 às 13:39
+-- Tempo de geração: 03/09/2025 às 17:14
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -89,6 +89,19 @@ CREATE TABLE `id_videos_id_playlist` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `likes`
+--
+
+CREATE TABLE `likes` (
+  `ID` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  `videos_id` int(11) DEFAULT NULL,
+  `curtido` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `pessoa`
 --
 
@@ -97,17 +110,25 @@ CREATE TABLE `pessoa` (
   `nome_pai` varchar(100) NOT NULL,
   `nome_mae` varchar(100) NOT NULL,
   `telefone` varchar(20) NOT NULL,
-  `data_nascimento` date DEFAULT NULL
+  `data_nascimento` date DEFAULT NULL,
+  `nome` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pessoa`
 --
 
-INSERT INTO `pessoa` (`id`, `nome_pai`, `nome_mae`, `telefone`, `data_nascimento`) VALUES
-(32, 'Guilherme Moura', 'Guilherme Moura', 'guigatomoura@gmail.c', '0000-00-00'),
-(35, 'sg', 'gd', '(00) 05205-5050', '0000-00-00'),
-(36, 'sg', 'gd', '(00) 05205-5050', '5050-06-05');
+INSERT INTO `pessoa` (`id`, `nome_pai`, `nome_mae`, `telefone`, `data_nascimento`, `nome`) VALUES
+(32, 'Guilherme Moura', 'Guilherme Moura', 'guigatomoura@gmail.c', '0000-00-00', 0),
+(35, 'sg', 'gd', '(00) 05205-5050', '0000-00-00', 0),
+(36, 'sg', 'gd', '(00) 05205-5050', '5050-06-05', 0),
+(37, 'Guilherme Moura', 'Guilherme Moura', '(44) 99975-9681', '3525-10-02', 0),
+(38, 'ngn', 'ngn', '(05) 10660-0160', '4040-01-01', 0),
+(39, 'Guilherme Moura', 'Guilherme Moura', '(44) 99975-9681', '0405-04-04', 0),
+(40, 'Guilherme Moura', 'Guilherme Moura', '(44) 99975-9681', '0000-00-00', 0),
+(41, 'Guilherme Moura', 'Guilherme Moura', '(44) 99975-9681', '0100-01-01', 0),
+(42, 'Luiz Marcelo', 'Priscila', '(00) 52050-5050', '2009-06-01', 0),
+(43, 'victor', 'manzoli', '(05) 10606-0004', '0404-06-01', 0);
 
 -- --------------------------------------------------------
 
@@ -133,18 +154,24 @@ CREATE TABLE `usuarios` (
   `ID` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(110) NOT NULL,
-  `is_adm` tinyint(1) DEFAULT 0,
-  `nome` varchar(500) NOT NULL
+  `is_adm` varchar(200) NOT NULL DEFAULT 'usuario',
+  `nome_de_usuario` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`fk_pessoa`, `ID`, `email`, `senha`, `is_adm`, `nome`) VALUES
-(NULL, 6, 'guigatomoura@gmail.com', '$2y$10$yUSdMp8fIVQdjjCCQ1dL6O9sq1lD2B9MlnZDnllk0faN2BzFgy6B.', 1, ''),
-(NULL, 9, '31@gmail', '$2y$10$3v2A7kVhqcJOnlnNOJH7R.cWuSgsANQSyF29.TzAf3TMBonrzunj.', 0, 'gui'),
-(NULL, 10, '310@gmail', '$2y$10$PY.mBuDGv1rLh.r9L.QEtuERP5aP6Tw3e4gmZ8LJlQGh1w1IU3ugq', 0, 'gui');
+INSERT INTO `usuarios` (`fk_pessoa`, `ID`, `email`, `senha`, `is_adm`, `nome_de_usuario`) VALUES
+(NULL, 9, '31@gmail', '$2y$10$3v2A7kVhqcJOnlnNOJH7R.cWuSgsANQSyF29.TzAf3TMBonrzunj.', '0', 'gui'),
+(NULL, 10, '310@gmail', '$2y$10$PY.mBuDGv1rLh.r9L.QEtuERP5aP6Tw3e4gmZ8LJlQGh1w1IU3ugq', '0', 'gui'),
+(NULL, 11, '123@gmail.com', '$2y$10$H5fYRF3fyIadpweA61trWeiv8g8lA.edR4QORoEVILpSrHFrwZ.j6', '0', 'Guilherme Moura'),
+(NULL, 12, '10@gmail.com', '$2y$10$PrZf6WJ5WtVmYuno1jQtwuYVM0t1o584RD6rXkHD.Tx.XXCTY5LHe', '0', 'nd'),
+(NULL, 13, '1023@gmail.com', '$2y$10$/SDZmBOyngm4S4ihpGMq..irs9sM3PswjZp8Ap6l.j8m96bEYbnOW', '0', 'Guilherme Moura'),
+(NULL, 14, 'dd123@gmail.com', '$2y$10$iCtEOrv.PMK/ZpvX/wu.4OlkY8oWUWCSKXaeXYoA29TMnFdKC9P5K', '2', 'gjmowpspmgroim'),
+(NULL, 15, 'do@gmail.com', '$2y$10$AURWMm2xmfbkEgKwK7bhS.HENy.T5DWXcP..VwXvDeNkYmshe529y', '2', 'Guilherme Moura'),
+(NULL, 16, 'guigatomoura@gmail.com', '$2y$10$dgTMHQI6G0YQOxM7fz02ZOBqsInF0YJ7kU9x69qFlwLkINimcJ8Ya', 'CEO', 'Guilherme  de Moura Rodrigues'),
+(NULL, 17, 'kayo@gmail.com', '$2y$10$1pSCC.Is7WA5yMyXz0gfb.lqZCAwUKESf2nAF.IHr272J4FA.vAA6', 'usuario', 'Big Big');
 
 -- --------------------------------------------------------
 
@@ -158,9 +185,10 @@ CREATE TABLE `videos` (
   `fk_playlist` int(11) NOT NULL,
   `nome_video` varchar(200) NOT NULL,
   `link` varchar(200) NOT NULL,
-  `curtir` tinyint(4) NOT NULL DEFAULT 0,
-  `salvar` tinyint(4) NOT NULL DEFAULT 0,
-  `assistir_mais_tarde` tinyint(4) NOT NULL DEFAULT 0
+  `salvar` tinyint(4) DEFAULT 0,
+  `assistir_mais_tarde` tinyint(4) DEFAULT 0,
+  `descricao` mediumtext NOT NULL,
+  `thumbnail` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -193,6 +221,14 @@ ALTER TABLE `id_videos_id_playlist`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `fk_videos` (`fk_videos`),
   ADD KEY `fk_playlist` (`fk_playlist`);
+
+--
+-- Índices de tabela `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `fk_likes_usuario_id` (`usuario_id`),
+  ADD KEY `fk_likes_videos_id` (`videos_id`);
 
 --
 -- Índices de tabela `pessoa`
@@ -251,10 +287,16 @@ ALTER TABLE `id_videos_id_playlist`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `pessoa`
 --
 ALTER TABLE `pessoa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de tabela `playlist`
@@ -266,7 +308,7 @@ ALTER TABLE `playlist`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `videos`
@@ -290,6 +332,13 @@ ALTER TABLE `categoria`
 ALTER TABLE `id_videos_id_playlist`
   ADD CONSTRAINT `id_videos_id_playlist_ibfk_1` FOREIGN KEY (`fk_videos`) REFERENCES `playlist` (`fk_videos`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_videos_id_playlist_ibfk_2` FOREIGN KEY (`fk_playlist`) REFERENCES `videos` (`fk_playlist`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `likes`
+--
+ALTER TABLE `likes`
+  ADD CONSTRAINT `fk_likes_usuario_id` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`ID`),
+  ADD CONSTRAINT `fk_likes_videos_id` FOREIGN KEY (`videos_id`) REFERENCES `videos` (`ID`);
 
 --
 -- Restrições para tabelas `usuarios`

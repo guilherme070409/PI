@@ -39,7 +39,7 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
                 <img src="../assets/img/favicon.png" alt="Avatar" class="avatar">
                 <div class="user-info">
                     <span class="user-name"><?php echo isset($_SESSION['admin_nome']) ? htmlspecialchars($_SESSION['admin_nome']) : 'Administrador'; ?></span>
-                    <span class="user-role">Administrador</span>
+                    <span class="user-role"><?php echo isset($_SESSION['admin_cargo'])  ? htmlspecialchars($_SESSION['admin_cargo']) : 'Administrador';?></span>
                 </div>
             </div>
         </header>

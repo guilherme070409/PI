@@ -5,7 +5,8 @@ require_once '../model/Pessoa.php';
 require_once '../service/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $is_adm = 2;
+    $is_adm = 'usuario';
+    $nome_de_usuario = $_POST['userName'] ?? '';
     $nome           = $_POST['fullName']         ?? '';
     $nomePai        = $_POST['fatherName']       ?? '';
     $nomeMae        = $_POST['motherName']       ?? '';
@@ -28,13 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nomeMae,
         $telefone,
         $dataNascimento,
+        $nome
     );
        $registroFeito = usuario::cadastrar(
         $pdo,
         $email,
         $senha,
         $is_adm,
-        $nome,
+        $nome_de_usuario,
     );
     
 

@@ -8,35 +8,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['username'] ?? '';
     $senha = $_POST['password'] ?? '';
 
-    $usuario = usuario::buscarPorEmail($pdo, $email);
+    $usuario = usuario::buscarPorEmail($pdo, $email, $nome_de_usuario);
 
     if ($usuario && password_verify($senha, $usuario['senha'])) {
         
-        if ($usuario['is_adm']== 1) {
-            $_SESSION['admin_nome'] = $usuario['nome'];
-            $_SESSION['tipo'] = 'admin';
-            $_SESSION['msg'] = "Login realizado com sucesso!";
-            $_SESSION['msg_tipo'] = "sucesso";
-
-            exibirMensagemRedirect(
-                'Admin',
-                'Bem-vindo(a), ' . htmlspecialchars($usuario['nome']) . '!',
-                'Logando na página de admin...',
-                '../view/admin.php'
-            );
-        } else  {
-            $_SESSION['pessoa_nome'] = $usuario['nome'];
+        if ($usuario['is_adm'] == 'usuario') {
+            $_SESSION['pessoa_nome'] = $usuario['nome_de_usuario'];
             $_SESSION['pessoa_email'] = $usuario['email'];
             $_SESSION['tipo'] = 'pessoa';
             $_SESSION['msg'] = "Login realizado com sucesso!";
             $_SESSION['msg_tipo'] = "sucesso";
-
+            
             exibirMensagemRedirect(
-                'Login realizado',
+                 'Login realizado',
                 'Login realizado com sucesso!,' . 
-                "seja bem vindo " . $usuario['nome'],
+                "seja bem vindo " . $usuario['nome_de_usuario'],
                 'Você será redirecionado em instantes...',
                 '../view/Pagina inicial/index.php'
+            );
+        } else  {
+            $_SESSION['admin_nome'] = $usuario['nome_de_usuario'];
+            $_SESSION['admin_cargo'] = $usuario['is_adm'];
+            $_SESSION['tipo'] = 'admin';
+            $_SESSION['msg'] = "Login realizado com sucesso!";
+            $_SESSION['msg_tipo'] = "sucesso";
+
+   
+                 exibirMensagemRedirect(
+                'Admin',
+                'Bem-vindo(a), ' . htmlspecialchars($usuario['nome_de_usuario']) . '!',
+                'Logando na página de admin...',
+                '../view/admin.php'
             );
         }
     } else {

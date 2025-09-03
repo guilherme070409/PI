@@ -29,6 +29,10 @@
         <label for="fullName">Nome completo</label>
         <input type="text" name="fullName" id="fullName" required />
       </div>
+            <div class="input-group">
+        <label for="userName">Nome de usuario</label>
+        <input type="text" name="userName" id="userName" required />
+      </div>
 
       <div class="input-row">
         <div class="input-group">
