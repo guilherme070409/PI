@@ -5,10 +5,11 @@ require_once '../model/pessoa.php';
 require_once '../service/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['username'] ?? '';
+    $email = $_POST['username'] ?? ''; 
+    $nome_de_usuario = $_POST['username'] ?? ''; 
     $senha = $_POST['password'] ?? '';
 
-    $usuario = usuario::buscarPorEmail($pdo, $email, $nome_de_usuario);
+    $usuario = usuario::buscarPorEmail($pdo, $email,$nome_de_usuario);
 
     if ($usuario && password_verify($senha, $usuario['senha'])) {
         
@@ -20,11 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['msg_tipo'] = "sucesso";
             
             exibirMensagemRedirect(
-                 'Login realizado',
+                'Login realizado',
                 'Login realizado com sucesso!,' . 
                 "seja bem vindo " . $usuario['nome_de_usuario'],
                 'Você será redirecionado em instantes...',
-                '../view/Pagina inicial/index.php'
+                '../view/Pagina_inicial/index.php'
             );
         } else  {
             $_SESSION['admin_nome'] = $usuario['nome_de_usuario'];
@@ -38,13 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'Admin',
                 'Bem-vindo(a), ' . htmlspecialchars($usuario['nome_de_usuario']) . '!',
                 'Logando na página de admin...',
-                '../view/admin.php'
+                '../view/Adm page/'
             );
         }
     } else {
         $_SESSION['erro'] = "E-mail ou senha incorretos.";
         $_SESSION['msg_tipo'] = "erro";
-        header('Location: ../view/Pagina inicial/index.php');
+        header('Location: ../view/login.php');
         exit();
     }
 }

@@ -17,7 +17,7 @@
 
     <form action="../controller/LoginController.php" method="POST">
       <div class="input-group">
-        <input type="text" name="username" placeholder="Email" required>
+        <input type="text" name="username" placeholder="Email ou usuario  " required>
       </div>
       <div class="input-group">
         <input type="password" name="password" placeholder="Senha" required>

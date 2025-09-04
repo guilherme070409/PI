@@ -1,10 +1,12 @@
 <?php
 class usuario
 {
-    public static function buscarPorEmail($pdo, $email)
+    public static function buscarPorEmail($pdo, $email, $nome_de_usuario)
     {
-        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?" );
         $stmt->execute([$email]);
+                $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nome_de_usuario = ?" );
+        $stmt->execute([$nome_de_usuario]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
