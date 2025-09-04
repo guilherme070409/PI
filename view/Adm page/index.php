@@ -15,6 +15,16 @@
     <title>Painel Admin</title> 
 </head>
 <body>
+    
+<?php
+session_start();
+
+if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
+    header('Location: login.php');
+    exit();
+}
+
+?>
     <!-- Barra lateral (menu principal) -->
     <nav class="barra-lateral fechada">
         <header>
@@ -25,7 +35,7 @@
                 </span>
 
                 <div class="texto texto-logo">
-                    <span class="nome">KayoHipolito</span>
+                    <span class="nome"><?php echo isset($_SESSION['admin_nome']) ? htmlspecialchars($_SESSION['admin_nome']) : 'admin'; ?></span>
                     <span class="profissao">Web developer</span>
                 </div>
             </div>
