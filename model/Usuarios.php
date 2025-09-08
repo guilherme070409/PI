@@ -1,13 +1,16 @@
 <?php
 class usuario
 {
-    public static function buscarPorEmail($pdo, $email, $nome_de_usuario)
+    public static function buscarPorEmail($pdo, $login)
     {
-        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?" );
-        $stmt->execute([$email]);
-                $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nome_de_usuario = ?" );
-        $stmt->execute([$nome_de_usuario]);
+  if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
+            $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+        } else {
+            $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nome_de_usuario = ?");
+        }
+        $stmt->execute([$login]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    
     }
 
     public static function cadastrar($pdo, $email, $senha, $is_adm, $nome_de_usuario)

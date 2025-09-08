@@ -5,7 +5,7 @@ require_once '../model/Usuarios.php';
 require_once '../service/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_SESSION['email_recuperacao'] ?? null;
+  $email = $_SESSION['email_recuperacao'] ?? null;
     $novaSenha = $_POST['nova_senha'] ?? '';
     $confirmarSenha = $_POST['confirmar_senha'] ?? '';
 

@@ -36,7 +36,7 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
 
                 <div class="texto texto-logo">
                     <span class="nome"><?php echo isset($_SESSION['admin_nome']) ? htmlspecialchars($_SESSION['admin_nome']) : 'admin'; ?></span>
-                    <span class="profissao">Web developer</span>
+                    <span class="profissao"><?php echo isset($_SESSION['admin_cargo']) ? htmlspecialchars($_SESSION['admin_cargo']) : 'admin';?></span>
                 </div>
             </div>
 
@@ -128,9 +128,9 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
     </nav>
 
     <!-- Seção: Vídeos -->
+     
     <section class="inicio secao" id="section-videos">
         <div class="texto">Videos</div>
-
         <div class="conteudo">
             <!-- Filtros por categoria (somente visual) -->
             <div class="categorias-video" role="tablist" aria-label="Categorias de vídeos">
@@ -141,7 +141,6 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
                 <button class="etiqueta" data-category="comedia-humor">Comedia e humor</button>
                 <button class="etiqueta" data-category="mundo-imaginacao">Mundo da imaginação</button>
             </div>
-
             <!-- Barra de ações dos vídeos -->
             <div class="barra-videos">
                 <div class="esquerda">
@@ -152,7 +151,6 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
                 </div>
                 
             </div>
-
             <!-- Grade de cartões de vídeos -->
             <div class="grade-videos">
                 <!-- Card único (exemplo) -->
@@ -299,6 +297,7 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
 
     <!-- Modal: Novo Vídeo (visual) -->
     <!-- Janela modal para criação de novo vídeo (somente visual) -->
+  
     <div class="fundo-modal" id="modal-new-video" aria-hidden="true" role="dialog" aria-modal="true">
         <div class="modal">
             <div class="cabecalho-modal">
@@ -308,19 +307,20 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
                 </button>
             </div>
             <div class="corpo-modal">
-                <form class="formulario">
+                 <form method="POST" action="../../controller/AdicionarController.php">
                     <div class="linha-form">
-                        <label>Título</label>
-                        <input type="text" placeholder="Ex: Meu vídeo incrível" />
+                        <label for="titulo">Título</label>
+                        <input type="text" name="titulo" id="titulo"
+                         placeholder="Ex: Meu vídeo incrível" />
                     </div>
                     <div class="linha-form">
-                        <label>URL do vídeo</label>
-                        <input type="url" placeholder="https://..." />
+                        <label for="link">URL do vídeo</label>
+                        <input type="url" name="url" id="url" placeholder="https://..." />
                     </div>
                     <div class="grade-form">
                         <div class="linha-form">
                             <label>Categoria</label>
-                            <select>
+                            <select name="categoria" id="categoria">
                                 <option value="animacoes">Animaçoes</option>
                                 <option value="filmes-infantis">filmes infantis</option>
                                 <option value="aventuras">aventuras</option>
@@ -329,22 +329,23 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
                             </select>
                         </div>
                         <div class="linha-form">
-                            <label>Thumbnail (URL)</label>
-                            <input type="url" placeholder="https://.../thumb.jpg" />
+                            <label for="capa">Thumbnail (URL)</label>
+                            <input type="url" name="thumbnail" id="thumbnail" placeholder="https://.../thumb.jpg" />
                         </div>
                     </div>
                     <div class="linha-form">
-                        <label>Descrição</label>
-                        <textarea rows="4" placeholder="Breve descrição do vídeo..."></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="rodape-modal">
+                        <label for="descricao">descricao</label>
+                        <textarea rows="4" name="descricao" id="descricao" placeholder="Breve descricao do vídeo..."></textarea>
+                         <div class="rodape-modal">
                 <button class="botao" id="cancel-new-video">Cancelar</button>
-                <button class="botao primario" disabled>Salvar</button>
+                <button type="submit" class="botao primario">Salvar</button>
             </div>
         </div>
     </div>
+                    </div>
+                </form>
+            </div>
+           
 
     <script src="script.js"></script>
 

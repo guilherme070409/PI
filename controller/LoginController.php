@@ -5,11 +5,10 @@ require_once '../model/pessoa.php';
 require_once '../service/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['username'] ?? ''; 
-    $nome_de_usuario = $_POST['username'] ?? ''; 
+    $login = $_POST['username'] ?? ''; 
     $senha = $_POST['password'] ?? '';
 
-    $usuario = usuario::buscarPorEmail($pdo, $email,$nome_de_usuario);
+    $usuario = usuario::buscarPorEmail($pdo, $login);
 
     if ($usuario && password_verify($senha, $usuario['senha'])) {
         
@@ -39,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'Admin',
                 'Bem-vindo(a), ' . htmlspecialchars($usuario['nome_de_usuario']) . '!',
                 'Logando na página de admin...',
-                '../view/Adm page/'
+                '../view/Adm_page/'
             );
         }
     } else {

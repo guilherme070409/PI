@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/09/2025 às 17:14
+-- Tempo de geração: 08/09/2025 às 21:28
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -29,17 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categoria` (
   `ID` int(11) NOT NULL,
-  `fk_faixa_etaria` int(11) NOT NULL,
-  `nome_da_categoria` varchar(200) NOT NULL,
-  `tipo` varchar(200) NOT NULL
+  `fk_faixa_etaria` int(11) DEFAULT NULL,
+  `nome_da_categoria` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `categoria`
 --
 
-INSERT INTO `categoria` (`ID`, `fk_faixa_etaria`, `nome_da_categoria`, `tipo`) VALUES
-(1, 1, '515', 'hehar');
+INSERT INTO `categoria` (`ID`, `fk_faixa_etaria`, `nome_da_categoria`) VALUES
+(1, 1, '515');
 
 -- --------------------------------------------------------
 
@@ -170,7 +169,7 @@ INSERT INTO `usuarios` (`fk_pessoa`, `ID`, `email`, `senha`, `is_adm`, `nome_de_
 (NULL, 13, '1023@gmail.com', '$2y$10$/SDZmBOyngm4S4ihpGMq..irs9sM3PswjZp8Ap6l.j8m96bEYbnOW', '0', 'Guilherme Moura'),
 (NULL, 14, 'dd123@gmail.com', '$2y$10$iCtEOrv.PMK/ZpvX/wu.4OlkY8oWUWCSKXaeXYoA29TMnFdKC9P5K', '2', 'gjmowpspmgroim'),
 (NULL, 15, 'do@gmail.com', '$2y$10$AURWMm2xmfbkEgKwK7bhS.HENy.T5DWXcP..VwXvDeNkYmshe529y', '2', 'Guilherme Moura'),
-(NULL, 16, 'guigatomoura@gmail.com', '$2y$10$dgTMHQI6G0YQOxM7fz02ZOBqsInF0YJ7kU9x69qFlwLkINimcJ8Ya', 'CEO', 'Guilherme  de Moura Rodrigues'),
+(NULL, 16, 'guigatomoura@gmail.com', '$2y$10$dgTMHQI6G0YQOxM7fz02ZOBqsInF0YJ7kU9x69qFlwLkINimcJ8Ya', 'CEO', 'Fulaninho'),
 (NULL, 17, 'kayo@gmail.com', '$2y$10$1pSCC.Is7WA5yMyXz0gfb.lqZCAwUKESf2nAF.IHr272J4FA.vAA6', 'usuario', 'Big Big');
 
 -- --------------------------------------------------------
@@ -181,15 +180,25 @@ INSERT INTO `usuarios` (`fk_pessoa`, `ID`, `email`, `senha`, `is_adm`, `nome_de_
 
 CREATE TABLE `videos` (
   `ID` int(11) NOT NULL,
-  `fk_categoria` int(11) NOT NULL,
-  `fk_playlist` int(11) NOT NULL,
-  `nome_video` varchar(200) NOT NULL,
-  `link` varchar(200) NOT NULL,
+  `fk_categoria` int(11) DEFAULT NULL,
+  `fk_playlist` int(11) DEFAULT NULL,
+  `titulo` varchar(200) NOT NULL,
+  `url` varchar(200) NOT NULL,
   `salvar` tinyint(4) DEFAULT 0,
   `assistir_mais_tarde` tinyint(4) DEFAULT 0,
-  `descricao` mediumtext NOT NULL,
+  `descricao` varchar(200) NOT NULL,
   `thumbnail` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `videos`
+--
+
+INSERT INTO `videos` (`ID`, `fk_categoria`, `fk_playlist`, `titulo`, `url`, `salvar`, `assistir_mais_tarde`, `descricao`, `thumbnail`) VALUES
+(1, NULL, NULL, 'gr', 'https://youtu.be/hWKa4HSsf2A', 0, 0, '', 'https://youtu.be/hWKa4HSsf2A'),
+(2, NULL, NULL, 'gr', 'https://youtu.be/hWKa4HSsf2A', 0, 0, '', 'https://youtu.be/hWKa4HSsf2A'),
+(3, NULL, NULL, 'gr', 'https://youtu.be/hWKa4HSsf2A', 0, 0, '', 'https://youtu.be/hWKa4HSsf2A'),
+(4, NULL, NULL, 'gr', 'https://youtu.be/hWKa4HSsf2A', 0, 0, 'vefrghvejiownrbho3ifjpm,c nthgi0of´pl~c,vbkth0j4gprokfl,çvkebjuhtg4i9f0o´plcdç,vfkmjgtire', 'https://youtu.be/hWKa4HSsf2A');
 
 --
 -- Índices para tabelas despejadas
@@ -314,7 +323,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para tabelas despejadas
