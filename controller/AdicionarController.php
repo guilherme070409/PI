@@ -10,6 +10,18 @@ require_once '../service/conexao.php';
   $categoria = $_POST['categoria'];
   $thumbnail = $_POST['thumbnail'];
   $descricao = $_POST['descricao'] ;
+  
+  
+  
+  $add_video = categoria :: cadastrar (
+    $pdo,
+    $categoria
+  );
+
+$my_categoria = categoria :: buscarcategoria($pdo, $categoria);
+
+  $fk_categoria = $my_categoria['id'];
+
 
 
 $add_video = videos::cadastrar (
@@ -18,7 +30,10 @@ $add_video = videos::cadastrar (
         $url,
         $thumbnail,
         $descricao,
+        $fk_categoria
 );
+
+
  if ($add_video) {
         $_SESSION['msg'] = "Video adicionado!!";
         header('Location: ../view/Adm_page/index.php');
