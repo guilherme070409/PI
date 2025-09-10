@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/09/2025 às 21:28
+-- Tempo de geração: 10/09/2025 às 17:21
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -38,7 +38,8 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`ID`, `fk_faixa_etaria`, `nome_da_categoria`) VALUES
-(1, 1, '515');
+(25, NULL, 'animacoes'),
+(26, NULL, 'comedia-humor');
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,7 @@ INSERT INTO `usuarios` (`fk_pessoa`, `ID`, `email`, `senha`, `is_adm`, `nome_de_
 
 CREATE TABLE `videos` (
   `ID` int(11) NOT NULL,
-  `fk_categoria` int(11) DEFAULT NULL,
+  `fk_categoria` int(11) NOT NULL,
   `fk_playlist` int(11) DEFAULT NULL,
   `titulo` varchar(200) NOT NULL,
   `url` varchar(200) NOT NULL,
@@ -195,10 +196,8 @@ CREATE TABLE `videos` (
 --
 
 INSERT INTO `videos` (`ID`, `fk_categoria`, `fk_playlist`, `titulo`, `url`, `salvar`, `assistir_mais_tarde`, `descricao`, `thumbnail`) VALUES
-(1, NULL, NULL, 'gr', 'https://youtu.be/hWKa4HSsf2A', 0, 0, '', 'https://youtu.be/hWKa4HSsf2A'),
-(2, NULL, NULL, 'gr', 'https://youtu.be/hWKa4HSsf2A', 0, 0, '', 'https://youtu.be/hWKa4HSsf2A'),
-(3, NULL, NULL, 'gr', 'https://youtu.be/hWKa4HSsf2A', 0, 0, '', 'https://youtu.be/hWKa4HSsf2A'),
-(4, NULL, NULL, 'gr', 'https://youtu.be/hWKa4HSsf2A', 0, 0, 'vefrghvejiownrbho3ifjpm,c nthgi0of´pl~c,vbkth0j4gprokfl,çvkebjuhtg4i9f0o´plcdç,vfkmjgtire', 'https://youtu.be/hWKa4HSsf2A');
+(22, 25, NULL, 'MOrangete piriguete', 'https://www.youtube.com/embed/hWKa4HSsf2A?si=RaDUE98sRUgO6PFv%22', 0, 0, 'moranguete com sua vida de piriquete', 'https://www.youtube.com/embed/hWKa4HSsf2A?si=RaDUE98sRUgO6PFv%22'),
+(23, 26, NULL, 'Mash eo Usho', 'https://www.youtube.com/embed/gvylc_BJDcc?si=28tJBJHJ7DYj1wSJ', 0, 0, 'Uma menina desgraçada inferna a vida de um usho clt', 'https://www.youtube.com/embed/gvylc_BJDcc?si=28tJBJHJ7DYj1wSJ');
 
 --
 -- Índices para tabelas despejadas
@@ -275,7 +274,7 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `codigos`
@@ -323,7 +322,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restrições para tabelas despejadas
