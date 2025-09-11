@@ -18,10 +18,24 @@
     
 <?php
 session_start();
+require_once '../../service/conexao.php'; 
+require_once '../../model/videos.php';  
+
 
 if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
     header('Location: login.php');
     exit();
+}
+
+$nome_categoria = $_GET['categoria']  ?? "Todos";
+
+
+if ($nome_categoria != "Todos") {
+    $lista_videos = videos::listarPorNomeCategoria($pdo, $nome_categoria);
+} else {
+    
+    $lista_videos = videos :: listar($pdo); // nenhum vídeo se não houver categoria
+
 }
 
 ?>
@@ -151,23 +165,35 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
                 </div>
                 
             </div>
+            <div class="videos-container">            
+
             <!-- Grade de cartões de vídeos -->
             <div class="grade-videos">
+                <?php if (!empty($lista_videos) && is_array($lista_videos)): ?>
+                  <?php foreach($lista_videos as $video): ?>
                 <!-- Card único (exemplo) -->
                 <article class="cartao-video" data-category="animacoes">
                     <div class="miniatura">
                         <div class="selo">Animaçoes</div>
+                         <iframe src="<?php echo htmlspecialchars($video['url']); ?>" 
+                    title="<?php echo htmlspecialchars($video['titulo']); ?>" 
+                    allowfullscreen>
+            </iframe>
                         <div class="duracao">12:47</div>
                     </div>
                     <div class="meta">
-                        <h3 class="titulo">Como criar um menu lateral responsivo</h3>
+                        <h3 class="titulo"><?php echo htmlspecialchars($video['titulo']); ?></h3>
                         <p class="descricao">Passo a passo para construir um sidebar com tema claro/escuro.</p>
                         <div class="estatisticas">
                             <span><i class='bx bx-show'></i> 1.2k</span>
                             <span><i class='bx bx-like'></i> 214</span>
                             <span><i class='bx bx-comment'></i> 18</span>
                         </div>
-                    </div>
+                        <?php endforeach; ?>
+        <?php else: ?>
+        <p>Nenhum vídeo encontrado para esta categoria.</p>
+            <?php endif; ?>
+        </div>
                     <div class="acoes">
                         <button class="botao fantasma" disabled><i class='bx bx-edit'></i> Editar</button>
                         <button class="botao fantasma" disabled><i class='bx bx-link'></i> Copiar link</button>

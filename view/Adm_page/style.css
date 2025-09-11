@@ -624,3 +624,9 @@ body.dark .inicio .texto{
 /* Paginação da tabela */
 .paginacao{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding: 12px 0; }
 .paginacao .esquerda{ color: var(--text-color); font-size: 14px; }
+
+iframe{
+position: absolute;
+height: 170px;
+width: 350px;
+}
