@@ -13,6 +13,18 @@ if ($nome_categoria != "Todos") {
     $lista_videos = videos :: listar($pdo); // nenhum vídeo se não houver categoria
 
 }
+if(isset($_POST['id'])){
+    $id = (int)$_POST['id'];
+    $resultado = videos::deletar($pdo, $id);
+
+    if($resultado){
+        header("Location: card.php?categoria=" . urlencode($nome_categoria));
+        exit;
+    } else {
+        echo "Erro ao deletar o vídeo.";
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -75,7 +87,10 @@ if ($nome_categoria != "Todos") {
 
 <div class="videos-container">
 <?php if (!empty($lista_videos) && is_array($lista_videos)): ?>
-    <?php foreach($lista_videos as $video): ?>
+    <?php foreach($lista_videos as $video):
+        $id = $video['ID'];
+    echo $id;
+     ?>
         <div class="video-card">
             <iframe src="<?php echo htmlspecialchars($video['url']); ?>" 
                     title="<?php echo htmlspecialchars($video['titulo']); ?>" 
@@ -85,7 +100,12 @@ if ($nome_categoria != "Todos") {
                 <h3><?php echo htmlspecialchars($video['titulo']); ?></h3>
                 <p>Categoria: <?php echo htmlspecialchars($video['nome_da_categoria']); ?></p>
                 <p><?php echo htmlspecialchars($video['descricao']); ?></p>
+                
             </div>
+           <form method="post" action="">
+        <input type="hidden" name="id" value="<?php echo $video['ID']; ?>">
+        <button type="submit" onclick="return confirm('Deseja realmente deletar este vídeo?')" >Deletar</button>
+    </form>
         </div>
     <?php endforeach; ?>
 <?php else: ?>

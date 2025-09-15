@@ -182,26 +182,27 @@ if ($nome_categoria != "Todos") {
                         <div class="duracao">12:47</div>
                     </div>
                     <div class="meta">
-                        <h3 class="titulo"><?php echo htmlspecialchars($video['titulo']); ?></h3>
+                        <h3 class="titulo"><?php echo htmlspecialchars($video['titulo']); ?>                                        </h3>
                         <p class="descricao">Passo a passo para construir um sidebar com tema claro/escuro.</p>
                         <div class="estatisticas">
                             <span><i class='bx bx-show'></i> 1.2k</span>
                             <span><i class='bx bx-like'></i> 214</span>
                             <span><i class='bx bx-comment'></i> 18</span>
                         </div>
-                        <?php endforeach; ?>
-        <?php else: ?>
-        <p>Nenhum vídeo encontrado para esta categoria.</p>
-            <?php endif; ?>
+                        
         </div>
                     <div class="acoes">
                         <button class="botao fantasma" disabled><i class='bx bx-edit'></i> Editar</button>
                         <button class="botao fantasma" disabled><i class='bx bx-link'></i> Copiar link</button>
-                        <button class="botao perigo" disabled><i class='bx bx-trash'></i> Excluir</button>
+                        <button class="botao perigo" disabled ><i class='bx bx-trash'></i> Excluir</button>
                     </div>
                 </article>
             </div>
         </div>
+        <?php endforeach; ?>
+        <?php else: ?>
+        <p>Nenhum vídeo encontrado para esta categoria.</p>
+            <?php endif; ?>
     </section>
 
     <!-- Seção: Assinaturas -->
