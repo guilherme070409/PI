@@ -111,3 +111,39 @@ navLinks.forEach(link => {
 // Default section
 // Seção inicial padrão
 mostrarSecao('videos');
+
+// ===== Modal: Editar Vídeo =====
+const modalEditVideo = document.getElementById('modal-edit-video');
+const closeEditVideoBtn = document.getElementById('close-edit-video');
+const cancelEditVideoBtn = document.getElementById('cancel-edit-video');
+const editId = document.getElementById('edit-id');
+const editTitulo = document.getElementById('edit-titulo');
+const editUrl = document.getElementById('edit-url');
+const editCategoria = document.getElementById('edit-categoria');
+const editThumb = document.getElementById('edit-thumbnail');
+const editDescricao = document.getElementById('edit-descricao');
+
+// Abre modal preenchendo os dados
+document.querySelectorAll('.btn-editar').forEach(btn => {
+    btn.addEventListener('click', () => {
+        editId.value = btn.dataset.id;
+        editTitulo.value = btn.dataset.titulo;
+        editUrl.value = btn.dataset.url;
+        editCategoria.value = btn.dataset.categoria;
+        editThumb.value = btn.dataset.thumbnail;
+        editDescricao.value = btn.dataset.descricao;
+
+        modalEditVideo.classList.add('open');
+        modalEditVideo.setAttribute('aria-hidden','false');
+    });
+});
+
+// Fecha modal
+function fecharEditModal(){
+    modalEditVideo.classList.remove('open');
+    modalEditVideo.setAttribute('aria-hidden','true');
+}
+
+closeEditVideoBtn && closeEditVideoBtn.addEventListener('click', fecharEditModal);
+cancelEditVideoBtn && cancelEditVideoBtn.addEventListener('click', (e)=>{ e.preventDefault(); fecharEditModal(); });
+modalEditVideo && modalEditVideo.addEventListener('click', (e)=>{ if(e.target === modalEditVideo) fecharEditModal(); });

@@ -37,6 +37,17 @@ if ($nome_categoria != "Todos") {
     $lista_videos = videos :: listar($pdo); // nenhum vídeo se não houver categoria
 
 }
+if(isset($_POST['id'])){
+    $id = (int)$_POST['id'];
+    $resultado = videos::deletar($pdo, $id);
+
+    if($resultado){
+        header("Location: index.php?categoria=" . urlencode($nome_categoria));
+        exit;
+    } else {
+        echo "Erro ao deletar o vídeo.";
+    }
+}
 
 ?>
     <!-- Barra lateral (menu principal) -->
@@ -164,7 +175,8 @@ if ($nome_categoria != "Todos") {
                     </button>
                 </div>
                 
-            </div>
+</div>
+            
             <div class="videos-container">            
 
             <!-- Grade de cartões de vídeos -->
@@ -192,9 +204,12 @@ if ($nome_categoria != "Todos") {
                         
         </div>
                     <div class="acoes">
-                        <button class="botao fantasma" disabled><i class='bx bx-edit'></i> Editar</button>
+                         <form method="post" action="">
+       <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $video['ID']; ?>">Editar
+</button>
                         <button class="botao fantasma" disabled><i class='bx bx-link'></i> Copiar link</button>
-                        <button class="botao perigo" disabled ><i class='bx bx-trash'></i> Excluir</button>
+                         <input type="hidden" name="id" value="<?php echo $video['ID']; ?>">
+                        <button class="botao perigo" type="submit" onclick="return confirm('Deseja realmente deletar este vídeo?')" ><i class='bx bx-trash'></i> Excluir</button>
                     </div>
                 </article>
             </div>
@@ -372,7 +387,59 @@ if ($nome_categoria != "Todos") {
                     </div>
                 </form>
             </div>
-           
+           <div class="fundo-modal" id="modal-edit-video" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal">
+        <div class="cabecalho-modal">
+            <h3>Editar vídeo</h3>
+            <button class="btn-icone" id="close-edit-video" aria-label="Fechar">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>
+        <div class="corpo-modal">
+            <form method="POST" action="../../controller/EditarController.php">
+                <input type="hidden" name="id" id="edit-id">
+
+                <div class="linha-form">
+                    <label for="edit-titulo">Título</label>
+                    <input type="text" name="titulo" id="edit-titulo"/>
+                </div>
+
+                <div class="linha-form">
+                    <label for="edit-url">URL do vídeo</label>
+                    <input type="url" name="url" id="edit-url"/>
+                </div>
+
+                <div class="grade-form">
+                    <div class="linha-form">
+                        <label for="edit-categoria">Categoria</label>
+                        <select name="categoria" id="edit-categoria">
+                            <option value="animacoes">Animaçoes</option>
+                            <option value="filmes-infantis">filmes infantis</option>
+                            <option value="aventuras">aventuras</option>
+                            <option value="comedia-humor">Comedia e humor</option>
+                            <option value="mundo-imaginacao">Mundo da imaginação</option>
+                        </select>
+                    </div>
+                    <div class="linha-form">
+                        <label for="edit-thumbnail">Thumbnail (URL)</label>
+                        <input type="url" name="thumbnail" id="edit-thumbnail"/>
+                    </div>
+                </div>
+
+                <div class="linha-form">
+                    <label for="edit-descricao">Descrição</label>
+                    <textarea rows="4" name="descricao" id="edit-descricao"></textarea>
+                </div>
+
+                <div class="rodape-modal">
+                    <button class="botao" id="cancel-edit-video">Cancelar</button>
+                    <button type="submit" class="botao primario">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
     <script src="script.js"></script>
 
