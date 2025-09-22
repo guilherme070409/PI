@@ -112,14 +112,13 @@ navLinks.forEach(link => {
 // Seção inicial padrão
 mostrarSecao('videos');
 
-// ===== Modal: Editar Vídeo =====
 const modalEditVideo = document.getElementById('modal-edit-video');
 const closeEditVideoBtn = document.getElementById('close-edit-video');
 const cancelEditVideoBtn = document.getElementById('cancel-edit-video');
 const editId = document.getElementById('edit-id');
 const editTitulo = document.getElementById('edit-titulo');
 const editUrl = document.getElementById('edit-url');
-const editCategoria = document.getElementById('edit-categoria');
+const editCategoria = document.getElementById('edit-categoria'); // Corrigido!
 const editThumb = document.getElementById('edit-thumbnail');
 const editDescricao = document.getElementById('edit-descricao');
 

@@ -183,9 +183,9 @@ if(isset($_POST['id'])){
                 <?php if (!empty($lista_videos) && is_array($lista_videos)): ?>
                   <?php foreach($lista_videos as $video): ?>
                 <!-- Card único (exemplo) -->
-                <article class="cartao-video" data-category="animacoes">
+                <article class="cartao-video" data-category="<?php echo htmlspecialchars($video['nome_da_categoria']); ?>">
                     <div class="miniatura">
-                        <div class="selo">Animaçoes</div>
+                        <div class="selo"><?php echo htmlspecialchars($video['nome_da_categoria']); ?></div>
                          <iframe src="<?php echo htmlspecialchars($video['url']); ?>" 
                     title="<?php echo htmlspecialchars($video['titulo']); ?>" 
                     allowfullscreen>
@@ -205,16 +205,13 @@ if(isset($_POST['id'])){
                     <div class="acoes">
                          <form method="post" action="">
 <button type="button" class="btn-editar"
-    data-id="<?php echo $video['ID']; ?>"
-    data-titulo="<?php echo htmlspecialchars($video['titulo']); ?>"
-    data-url="<?php echo htmlspecialchars($video['url']); ?>"
-    data-thumbnail="<?php echo htmlspecialchars($video['thumbnail']); ?>"
-    data-categoria="<?php echo $video['fk_categoria']; ?>"
-    data-descricao="<?php echo htmlspecialchars($video['descricao']); ?>">
+        data-id="<?php echo $video['ID']; ?>"
+        data-titulo="<?php echo $video['titulo']; ?>"
+        data-url="<?php echo $video['url']; ?>"
+        data-thumbnail="<?php echo $video['thumbnail']; ?>"
+        data-descricao="<?php echo $video['descricao']; ?>">
     Editar
 </button>
-
-
                         <button class="botao fantasma" disabled><i class='bx bx-link'></i> Copiar link</button>
                          <input type="hidden" name="id" value="<?php echo $video['ID']; ?>">
                         <button class="botao perigo" type="submit" onclick="return confirm('Deseja realmente deletar este vídeo?')" ><i class='bx bx-trash'></i> Excluir</button>
@@ -371,11 +368,11 @@ if(isset($_POST['id'])){
                         <div class="linha-form">
                             <label>Categoria</label>
                             <select name="categoria" id="categoria">
-                                <option value="animacoes">Animaçoes</option>
-                                <option value="filmes-infantis">filmes infantis</option>
-                                <option value="aventuras">aventuras</option>
-                                <option value="comedia-humor">Comedia e humor</option>
-                                <option value="mundo-imaginacao">Mundo da imaginação</option>
+                                <option value="1">Animaçoes</option>
+                                <option value="2">filmes infantis</option>
+                                <option value="3">aventuras</option>
+                                <option value="4">Comedia e humor</option>
+                                <option value="5">Mundo da imaginação</option>
                             </select>
                         </div>
                         <div class="linha-form">
@@ -419,12 +416,12 @@ if(isset($_POST['id'])){
                 <div class="grade-form">
                     <div class="linha-form">
                         <label for="edit-categoria">Categoria</label>
-                        <select name="categoria" id="edit-categoria">
-                            <option value="animacoes">Animaçoes</option>
-                            <option value="filmes-infantis">filmes infantis</option>
-                            <option value="aventuras">aventuras</option>
-                            <option value="comedia-humor">Comedia e humor</option>
-                            <option value="mundo-imaginacao">Mundo da imaginação</option>
+                        <select name="categoria_id" id="edit-categoria">
+                            <option value='1'>Animaçoes</option>
+                            <option value="2">filmes infantis</option>
+                            <option value="3">aventuras</option>
+                            <option value="4">Comedia e humor</option>
+                            <option value="5">Mundo da imaginação</option>
                         </select>
                     </div>
                     <div class="linha-form">
