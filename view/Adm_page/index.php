@@ -21,7 +21,6 @@ session_start();
 require_once '../../service/conexao.php'; 
 require_once '../../model/videos.php';  
 
-
 if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
     header('Location: login.php');
     exit();
@@ -205,8 +204,17 @@ if(isset($_POST['id'])){
         </div>
                     <div class="acoes">
                          <form method="post" action="">
-       <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $video['ID']; ?>">Editar
+<button type="button" class="btn-editar"
+    data-id="<?php echo $video['ID']; ?>"
+    data-titulo="<?php echo htmlspecialchars($video['titulo']); ?>"
+    data-url="<?php echo htmlspecialchars($video['url']); ?>"
+    data-thumbnail="<?php echo htmlspecialchars($video['thumbnail']); ?>"
+    data-categoria="<?php echo $video['fk_categoria']; ?>"
+    data-descricao="<?php echo htmlspecialchars($video['descricao']); ?>">
+    Editar
 </button>
+
+
                         <button class="botao fantasma" disabled><i class='bx bx-link'></i> Copiar link</button>
                          <input type="hidden" name="id" value="<?php echo $video['ID']; ?>">
                         <button class="botao perigo" type="submit" onclick="return confirm('Deseja realmente deletar este vídeo?')" ><i class='bx bx-trash'></i> Excluir</button>
@@ -398,7 +406,6 @@ if(isset($_POST['id'])){
         <div class="corpo-modal">
             <form method="POST" action="../../controller/EditarController.php">
                 <input type="hidden" name="id" id="edit-id">
-
                 <div class="linha-form">
                     <label for="edit-titulo">Título</label>
                     <input type="text" name="titulo" id="edit-titulo"/>

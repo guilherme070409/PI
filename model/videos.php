@@ -43,12 +43,13 @@ public static function deletar($pdo, $id)
         return $stmt->execute();
     }
 
-public static function editar($pdo, $id, $titulo, $url, $categoria, $thumbnail, $descricao){
+public static function editar($pdo, $id, $titulo, $url, $fk_categoria, $thumbnail, $descricao){
     $stmt = $pdo->prepare("UPDATE videos 
-                           SET titulo = ?, url = ?, categoria = ?, thumbnail = ?, descricao = ?
+                           SET titulo = ?, url = ?, fk_categoria = ?, thumbnail = ?, descricao = ?
                            WHERE ID = ?");
-    return $stmt->execute([$titulo, $url, $categoria, $thumbnail, $descricao, $id]);
+    return $stmt->execute([$titulo, $url, $fk_categoria, $thumbnail, $descricao, $id]);
 }
+
 
 }
 ?>

@@ -129,7 +129,7 @@ document.querySelectorAll('.btn-editar').forEach(btn => {
         editId.value = btn.dataset.id;
         editTitulo.value = btn.dataset.titulo;
         editUrl.value = btn.dataset.url;
-        editCategoria.value = btn.dataset.categoria;
+        editCategoria.value = btn.dataset.categoria || "1"; // 1 = categoria padrão
         editThumb.value = btn.dataset.thumbnail;
         editDescricao.value = btn.dataset.descricao;
 
