@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/09/2025 às 17:21
+-- Tempo de geração: 24/09/2025 às 16:31
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -38,8 +38,12 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`ID`, `fk_faixa_etaria`, `nome_da_categoria`) VALUES
-(25, NULL, 'animacoes'),
-(26, NULL, 'comedia-humor');
+(1, NULL, 'animacoes'),
+(2, NULL, 'filmes infantis'),
+(3, NULL, 'aventuras'),
+(4, NULL, 'comedia e humor'),
+(5, NULL, 'mundo da imaginacao'),
+(27, NULL, '4');
 
 -- --------------------------------------------------------
 
@@ -196,8 +200,7 @@ CREATE TABLE `videos` (
 --
 
 INSERT INTO `videos` (`ID`, `fk_categoria`, `fk_playlist`, `titulo`, `url`, `salvar`, `assistir_mais_tarde`, `descricao`, `thumbnail`) VALUES
-(22, 25, NULL, 'MOrangete piriguete', 'https://www.youtube.com/embed/hWKa4HSsf2A?si=RaDUE98sRUgO6PFv%22', 0, 0, 'moranguete com sua vida de piriquete', 'https://www.youtube.com/embed/hWKa4HSsf2A?si=RaDUE98sRUgO6PFv%22'),
-(23, 26, NULL, 'Mash eo Usho', 'https://www.youtube.com/embed/gvylc_BJDcc?si=28tJBJHJ7DYj1wSJ', 0, 0, 'Uma menina desgraçada inferna a vida de um usho clt', 'https://www.youtube.com/embed/gvylc_BJDcc?si=28tJBJHJ7DYj1wSJ');
+(24, 4, NULL, '', '', 0, 0, '', '');
 
 --
 -- Índices para tabelas despejadas
@@ -274,7 +277,7 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de tabela `codigos`
@@ -322,7 +325,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restrições para tabelas despejadas

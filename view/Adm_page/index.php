@@ -162,7 +162,7 @@ if(isset($_POST['id'])){
                 <button class="etiqueta" data-category="animacoes">Animaçoes</button>
                 <button class="etiqueta" data-category="filmes infantis">filmes infantis</button>
                 <button class="etiqueta" data-category="aventuras">aventuras</button>
-                <button class="etiqueta" data-category="Comedia e humor">Comedia e humor</button>
+                <button class="etiqueta" data-category="comedia e humor">Comedia e humor</button>
                 <button class="etiqueta" data-category="mundo da imaginacao">Mundo da imaginação</button>
             </div>
             <!-- Barra de ações dos vídeos -->
