@@ -160,10 +160,10 @@ if(isset($_POST['id'])){
             <div class="categorias-video" role="tablist" aria-label="Categorias de vídeos">
                 <button class="etiqueta ativo" data-category="all" role="tab" aria-selected="true">Todas</button>
                 <button class="etiqueta" data-category="animacoes">Animaçoes</button>
-                <button class="etiqueta" data-category="filmes-infantis">filmes infantis</button>
+                <button class="etiqueta" data-category="filmes infantis">filmes infantis</button>
                 <button class="etiqueta" data-category="aventuras">aventuras</button>
-                <button class="etiqueta" data-category="comedia-humor">Comedia e humor</button>
-                <button class="etiqueta" data-category="mundo-imaginacao">Mundo da imaginação</button>
+                <button class="etiqueta" data-category="Comedia e humor">Comedia e humor</button>
+                <button class="etiqueta" data-category="mundo da imaginacao">Mundo da imaginação</button>
             </div>
             <!-- Barra de ações dos vídeos -->
             <div class="barra-videos">
