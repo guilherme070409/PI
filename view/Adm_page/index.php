@@ -8,6 +8,7 @@
     
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../fotos_de_perfil/fotos.css">
     
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -55,7 +56,7 @@ if(isset($_POST['id'])){
             <!-- Logo e texto do topo da barra lateral -->
             <div class="imagem-texto">
                 <span class="imagem">
-                    <img src="logo.png" alt="">
+                    <img src="../fotos_de_perfil/Patrick.png" alt="">
                 </span>
 
                 <div class="texto texto-logo">

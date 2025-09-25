@@ -25,7 +25,21 @@
   <div class="container">
     <h2>Registrar-se no Mundo Kids</h2>
     <form action="../controller/Registro.php" method="POST" onsubmit="return validarSenhas()">
-      <div class="input-group">
+       <label>Foto de perfil:</label>
+    <div>
+        <button type="button" id="abrirGaleria">Escolha sua foto de perfil</button>
+        <input type="hidden" name="avatar" id="avatarSelecionado" required>
+        <div id="previewAvatar" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- Galeria de avatares -->
+    <div id="galeria" class="galeria">
+        <img src="avatars/avatar1.png" class="avatar-img" alt="Avatar 1">
+        <img src="avatars/avatar2.png" class="avatar-img" alt="Avatar 2">
+        <img src="avatars/avatar3.png" class="avatar-img" alt="Avatar 3">
+        <img src="avatars/avatar4.png" class="avatar-img" alt="Avatar 4">
+    </div>
+    <div class="input-group">
         <label for="fullName">Nome completo</label>
         <input type="text" name="fullName" id="fullName" required />
       </div>

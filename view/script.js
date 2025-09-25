@@ -118,3 +118,30 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+const botaoGaleria = document.getElementById('abrirGaleria');
+const galeria = document.getElementById('galeria');
+const avatarInput = document.getElementById('avatarSelecionado');
+const preview = document.getElementById('previewAvatar');
+
+botaoGaleria.addEventListener('click', () => {
+    galeria.style.display = galeria.style.display === 'flex' ? 'none' : 'flex';
+});
+
+const avatares = document.querySelectorAll('.avatar-img');
+
+avatares.forEach(avatar => {
+    avatar.addEventListener('click', () => {
+        // Remove a seleção de todos
+        avatares.forEach(a => a.classList.remove('selecionado'));
+        // Marca o selecionado
+        avatar.classList.add('selecionado');
+        // Coloca o valor no input hidden
+        avatarInput.value = avatar.src.split('/').pop();
+        // Mostra o preview
+        preview.innerHTML = `<img src="${avatar.src}" class="avatar-img" style="border:2px solid purple;">`;
+        // Fecha a galeria
+        galeria.style.display = 'none';
+    });
+});

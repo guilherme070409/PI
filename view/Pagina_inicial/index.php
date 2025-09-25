@@ -9,6 +9,8 @@
 
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="assets/css/styles.css">
+      <link rel="stylesheet" href="../fotos_de_perfil/fotos.css">
+
 
       <title>MundoKids - Inicio</title>
    </head>
@@ -43,6 +45,7 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'pessoa') {
          <div class="sidebar__container">
             <div class="sidebar__user">
                <div class="sidebar__img">
+                  <img id="user-img" src="../fotos_de_perfil/Patrick.png" alt="Foto de Perfil">
                </div>
    
                <div class="sidebar__info" an class="user-name"><?php echo isset($_SESSION['pessoa_nome']) ? htmlspecialchars($_SESSION['pessoa_nome']) : 'pessoa'; ?></span>
