@@ -354,7 +354,7 @@ if(isset($_POST['id'])){
                 </button>
             </div>
             <div class="corpo-modal">
-                 <form method="POST" action="../../controller/AdicionarController.php">
+                 <form method="POST" action="../../controller/Adicionar.php">
                     <div class="linha-form">
                         <label for="titulo">Título</label>
                         <input type="text" name="titulo" id="titulo"
@@ -401,7 +401,7 @@ if(isset($_POST['id'])){
             </button>
         </div>
         <div class="corpo-modal">
-            <form method="POST" action="../../controller/EditarController.php">
+            <form method="POST" action="../../controller/Editar.php">
                 <input type="hidden" name="id" id="edit-id">
                 <div class="linha-form">
                     <label for="edit-titulo">Título</label>

@@ -18,7 +18,7 @@ session_start();
 
     <div class="container mt-5">
         <div class="form-box active" id="login-form">
-            <form action="../controller/NovaSenhaController.php" method="POST">
+            <form action="../controller/NovaSenha.php" method="POST">
                 <div class="input-group">
                   <label for="nova_senha">Nova senha</label>
                   <input type="password" name="nova_senha" id="nova_senha" placeholder="Nova senha" required />

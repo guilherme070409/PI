@@ -24,7 +24,7 @@
 
   <div class="container">
     <h2>Registrar-se no Mundo Kids</h2>
-    <form action="../controller/RegistroController.php" method="POST" onsubmit="return validarSenhas()">
+    <form action="../controller/Registro.php" method="POST" onsubmit="return validarSenhas()">
       <div class="input-group">
         <label for="fullName">Nome completo</label>
         <input type="text" name="fullName" id="fullName" required />

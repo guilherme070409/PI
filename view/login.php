@@ -15,7 +15,7 @@
   <div class="container">
     <h2>Entrar no Mundo Kids</h2>
 
-    <form action="../controller/LoginController.php" method="POST">
+    <form action="../controller/Login.php" method="POST">
       <div class="input-group">
         <input type="text" name="username" placeholder="Email ou usuario  " required>
       </div>

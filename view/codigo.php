@@ -18,7 +18,7 @@ session_start();
 
     <div class="container mt-5">
         <div class="form-box active" id="login-form">
-            <form action="../controller/VerificarCodigoController.php" method="POST">
+            <form action="../controller/VerificarCodigo.php" method="POST">
                 <div class="input-group">
                   <label for="codigo">Digite o código recebido</label>
                   <input type="text" name="codigo" id="codigo" placeholder="Código recebido" required />

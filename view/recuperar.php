@@ -13,7 +13,7 @@
 
   <div class="container">
     <h2>Esqueceu sua senha?</h2>
-    <form action="../controller/RecuperarSenhaController.php" method="POST">
+    <form action="../controller/RecuperarSenha.php" method="POST">
       <div class="input-group">
         <label for="email">Digite seu e-mail</label>
         <input type="email" name="email" id="email" required />
